@@ -1,0 +1,2 @@
+model,band_source,num_bands,patch_size,train_dataset,test_dataset,epochs_requested,batch_size,accuracy,precision,recall,f1,roc_auc
+PartialBandsCNN,l1,16,32x32,train_augmented,test,10,16,0.5716666666666667,0.5957683741648107,0.44583333333333336,0.5100095328884652,0.6589381944444446

@@ -1,0 +1,15 @@
+{
+  "model": "AllBandsCNN",
+  "input_type": "patches",
+  "bands": "all_826",
+  "patch_size": "32x32",
+  "train_dataset": "train_augmented",
+  "test_dataset": "test",
+  "epochs_requested": 10,
+  "batch_size": 16,
+  "accuracy": 0.68625,
+  "precision": 0.8,
+  "recall": 0.49666666666666665,
+  "f1": 0.612853470437018,
+  "roc_auc": 0.7487159722222222
+}

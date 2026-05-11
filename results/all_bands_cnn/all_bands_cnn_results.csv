@@ -1,0 +1,2 @@
+model,input_type,bands,patch_size,train_dataset,test_dataset,epochs_requested,batch_size,accuracy,precision,recall,f1,roc_auc
+AllBandsCNN,patches,all_826,32x32,train_augmented,test,10,16,0.68625,0.8,0.49666666666666665,0.612853470437018,0.7487159722222222

@@ -1,0 +1,21 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Large dataset files
+train_augmented/*.npz
+test/*.npz
+
+# Model weights
+*.pt
+*.pth
+
+# Logs
+run_log*.txt
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db

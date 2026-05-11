@@ -1,0 +1,2 @@
+model,band_source,num_bands,patch_size,train_dataset,test_dataset,epochs_requested,batch_size,best_validation_f1,best_threshold,total_training_time_seconds,accuracy,precision,recall,f1,roc_auc
+PartialBandsCNN,anova,100,32x32,train_augmented,test,10,16,0.9887170915169243,0.44285714285714284,44944.003902196884,0.66625,0.828665568369028,0.4191666666666667,0.5567238516878804,0.7945375

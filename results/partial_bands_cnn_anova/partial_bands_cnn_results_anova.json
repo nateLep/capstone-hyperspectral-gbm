@@ -1,0 +1,18 @@
+{
+  "model": "PartialBandsCNN",
+  "band_source": "anova",
+  "num_bands": 100,
+  "patch_size": "32x32",
+  "train_dataset": "train_augmented",
+  "test_dataset": "test",
+  "epochs_requested": 10,
+  "batch_size": 16,
+  "best_validation_f1": 0.9887170915169243,
+  "best_threshold": 0.44285714285714284,
+  "total_training_time_seconds": 44944.003902196884,
+  "accuracy": 0.66625,
+  "precision": 0.828665568369028,
+  "recall": 0.4191666666666667,
+  "f1": 0.5567238516878804,
+  "roc_auc": 0.7945375
+}
