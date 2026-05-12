@@ -8,7 +8,7 @@ The project compares:
 
 The goal is to determine whether hyperspectral imaging can effectively classify tumor tissue and whether spectral dimensionality reduction can preserve performance while reducing model complexity.
 
----
+***
 
 ## Project Goal
 
@@ -16,7 +16,7 @@ Glioblastoma (GBM) is the most aggressive malignant brain tumor in adults. Accur
 
 This project explores whether hyperspectral imaging can improve tumor classification by identifying spectral differences between tumor and non-tumor tissue that may not be visible using standard imaging methods.
 
----
+***
 
 ## Dataset
 
@@ -33,7 +33,7 @@ Each hyperspectral patch contains:
 **Training data:** Augmented training patches  
 **Testing data:** Held-out test dataset
 
----
+***
 
 ## Repository Structure
 
@@ -60,7 +60,7 @@ capstone-hyperspectral-gbm/
     └── model outputs
 ```
 
----
+***
 
 ## Models
 
@@ -73,12 +73,7 @@ The all-bands CNN uses the complete hyperspectral input with all 826 spectral ba
 - Highest spectral information retention
 - Largest computational cost
 
-**Run with:**
-```bash
-python all_bands_cnn.py
-```
-
----
+***
 
 ### 2. Partial Bands CNN
 
@@ -91,21 +86,7 @@ The partial-bands CNN uses reduced spectral-band subsets selected through:
 - Lower spectral input size
 - Evaluates importance of selected spectral regions
 
-**Run with:**
-```bash
-python partial_bands_cnn.py
-```
-
-> **Note:** To switch between ANOVA and L1, open `partial_bands_cnn.py` and modify:
-> ```python
-> USE_BANDS = "anova"  # Change to "l1" or "anova"
-> ```
->
-> **Supported band files:**
-> - `top100_bands_anova.csv`
-> - `l1_selected_bands.csv`
-
----
+***
 
 ## Data Format
 
@@ -136,7 +117,7 @@ Each dataset folder (`train_augmented/`, `test/`) contains:
 | `augmentation_type` | Type of augmentation applied |
 | `num_patches` | Number of patches in the file |
 
----
+***
 
 ## Training and Evaluation
 
@@ -153,24 +134,23 @@ The CNN models use the following training configuration:
 
 Final testing is performed on a completely held-out test dataset.
 
----
+***
 
 ## Output Files
 
 Model outputs are saved to the `results/` folder or model-specific results subfolders.
-
-**Expected outputs may include:**
 
 | File | Description |
 |------|-------------|
 | `*.pt` | Best model weights (e.g., `all_bands_cnn_best.pt`) |
 | `training_curves.png` | Training and validation loss/accuracy curves |
 | `test_confusion_matrix.png` | Confusion matrix on the test set |
-| `*_results_anova.csv` | CSV metric summary (e.g., `partial_bands_cnn_results_anova.csv`) |
+| `all_bands_cnn_results.csv` | CSV metric summary for all-bands model |
+| `partial_bands_cnn_results_anova.csv` | CSV metric summary for partial-bands model |
 | `*.json` | JSON result summaries |
 | `*.log` | Run log files |
 
----
+***
 
 ## Evaluation Metrics
 
@@ -182,7 +162,7 @@ Model outputs are saved to the `results/` folder or model-specific results subfo
 | **F1 Score** | Harmonic mean of precision and recall; useful when both false positives and false negatives matter |
 | **ROC-AUC** | Measures how well the model separates tumor and non-tumor classes across all thresholds — higher values indicate stronger class separation |
 
----
+***
 
 ## Development Environment
 
@@ -197,33 +177,72 @@ This project was developed and tested using:
 
 > If DirectML is unavailable, the code automatically falls back to CPU execution.
 
----
+***
 
-## Installation
+## Setup Instructions
 
-Install the required packages with:
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/nateLep/capstone-hyperspectral-gbm.git
+cd capstone-hyperspectral-gbm
+```
+
+### 2. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
+### 3. Add the Dataset
+
+> **Note:** The full `.npz` hyperspectral patch dataset is **not included** in this repository due to GitHub file size limitations.
+
+Place your dataset files in the following structure before running any scripts:
+
+```text
+capstone-hyperspectral-gbm/
+│
+├── train_augmented/
+│   ├── manifest.csv
+│   └── *.npz
+│
+└── test/
+    ├── manifest.csv
+    └── *.npz
+```
+
+***
 
 ## Running the Project
 
-**Run the all-bands CNN:**
+### Run the Full-Spectrum CNN
+
 ```bash
 python all_bands_cnn.py
 ```
 
-**Run the partial-bands CNN:**
+Trains and evaluates the CNN using all 826 spectral bands.
+
+### Run the Partial-Bands CNN
+
 ```bash
 python partial_bands_cnn.py
 ```
 
+Trains and evaluates the CNN using a reduced spectral band subset. Band-selection mode is controlled by modifying the following line inside `partial_bands_cnn.py`:
+
+```python
+USE_BANDS = "anova"  # Change to "l1" or "anova"
+```
+
+**Supported band files:**
+- `top100_bands_anova.csv`
+- `l1_selected_bands.csv`
+
 > **Note:** Training times may vary significantly depending on hardware, GPU availability, DirectML support, dataset size, and the number of spectral bands used. Full-spectrum CNN models may require several hours of training on local hardware.
 
----
+***
 
 ## Key Findings
 
@@ -236,7 +255,7 @@ Key observations from experimentation:
 - ANOVA-100 preserved more spectral information than ANOVA-50
 - ROC-AUC improved after optimization changes
 
----
+***
 
 ## Limitations
 
@@ -248,7 +267,7 @@ Current limitations include:
 - Potential patch-label noise
 - Reduced-band methods may discard useful spectral information
 
----
+***
 
 ## Future Improvements
 
